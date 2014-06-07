@@ -1,5 +1,5 @@
 If you're anything like me, you can never remember the argument order for
-`alias_method`. I always think to myself "it's the other way around then I think
+`alias_method`. I always think to myself "it's the other way around than I think
 it is", but then end up doing it wrong anyway.
 
 So here is my mnemonic for remembering it:
