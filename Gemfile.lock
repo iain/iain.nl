@@ -11,6 +11,7 @@ GEM
     aws-sigv4 (1.0.0)
     builder (3.2.3)
     coderay (1.1.1)
+    dotenv (2.2.0)
     ffi (1.9.18)
     formatador (0.2.5)
     guard (2.14.1)
@@ -63,6 +64,7 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk
   builder
+  dotenv
   guard
   guard-shell
   redcarpet
