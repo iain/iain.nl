@@ -2,11 +2,11 @@ doctype html
 html
   head
     meta charset="UTF-8"
-    title = "iain.nl"
     meta name="description" content="iain's blog"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    title iain.nl
     link rel="canonical" href="http://www.iain.nl/"
     link rel="alternate" type="application/rss+xml" href="/feed" title="iain.nl RSS Feed"
-    meta name='viewport'    content='width=device-width, initial-scale=1.0'
     style type="text/css" == css
   body
     .title-bar
@@ -40,22 +40,3 @@ html
             p.summary = post.summary
             p.read-more
               a rel="nofollow" href=post.path → Read More
-
-    .footer
-      .wrapper
-        .main
-          a href="/" # iain.nl
-          span.sep ·
-          a href="https://github.com/iain" Github
-          span.sep ·
-          a href="https://twitter.com/iain_nl" Twitter
-
-
-javascript:
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-3029372-4', 'iain.nl');
-  ga('send', 'pageview');
