@@ -1,50 +1,66 @@
 @import "shared"
 
-.article-title
-  margin-bottom: 10px
+article
+  header
+    margin-bottom: 10px
 .published
   color: #7c7c7c
-  font-style: italic
-  font-size: 80%
-  margin-bottom: 25px
+  margin-bottom: 54px
+  font-size: 16px
+  text-align: right
 .post-body
-  line-height: 150%
-  p:first-child
-    color: #808094
-    font-style: italic
-.comments p.lead
-  font-size: 150%
-  font-weight: 1
+  p
+    text-align: justify
+h2, h3
+  margin-top: 42px
 pre, code
   font-family: $code-font
 code
-  background: #eeeeef
-  font-size: 95%
-  padding: 0 5px
-  word-break: break-all
-  -ms-word-break: break-all
-  word-break: break-all
-  word-break: break-word
-  -webkit-hyphens: auto
-  -moz-hyphens: auto
-  hyphens: auto
+  background: #dfdfdf
+  font-size: 16px
+  padding: 1px 3px
+  margin: 0 2px
+  white-space: nowrap
 pre
   overflow-x: auto
-  background: black
-  font-size: 90%
+  background: #222
+  font-size: 16px
   color: white
-  padding: 10px
-  .c1
-    color: #7c7c7c
-  .ss, .s1, .s2
-    color: #99cc99
-  .k, .nb
-    color: #6699cc
-  .mi
-    color: #ff73fd
-  .vi
-    color: #c6c5fe
-  .nc, .no, .nn
-    color: #ffffb6
+  padding: 13px
   code
     background: transparent
+  .c1
+    color: #888888
+  // string
+  .s, .s1, .s2, .sx
+    color: #99ad6a
+  // symbol
+  .ss
+    color: #7697d6
+  // keywords?
+  .nb
+    color: #6699cc
+  // keywords
+  .k, .nb, .kp
+    color: #8fbfdc
+  // numbers
+  .mi
+    color: #cf6a4c
+  // instance vars
+  .vi
+    color: #c6b6ee
+  // constant
+  .nc, .no, .nn, .nl
+    color: #ffb964
+  // css prop
+  .nl
+    color: #fad07a
+  // def function
+  .k + .nf
+    color: #ffb964
+  // yaml key / tags
+  .na, .nt
+    color: #c6b6ee
+  // regex
+  .sr, .se
+    color: #dd0093

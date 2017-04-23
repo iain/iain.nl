@@ -1,25 +1,9 @@
-doctype html
-html
-  head
-    meta charset="UTF-8"
-    meta name="description" content=summary
-    meta name="viewport" content="width=device-width, initial-scale=1.0"
-    title = "#{title} - iain.nl"
-    link rel="canonical" href="http://www.iain.nl/#{path}"
-    link rel="alternate" type="application/rss+xml" href="/feed" title="iain.nl RSS Feed"
-    style type="text/css" == css
-  body
-    .title-bar
-      .wrapper
-        .main
-          h1.title
-            a href="/" # iain.nl
-    .wrapper
-      .main
-        h2.article-title = title
-        .published
-          ' Written on
-          time datetime=publish_date = publish_formatted
+article
+  header
+    h1 = title
+  p.published
+    ' Written on
+    time datetime=publish_date = publish_formatted
 
-        .post-body
-          == body
+  section.post-body
+    == body

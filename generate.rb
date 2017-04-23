@@ -4,6 +4,8 @@ Bundler.require(:default)
 require "yaml"
 require "fileutils"
 
+require "pathname"
+URL = Pathname("http://iain.nl")
 
 class Post
 
@@ -25,6 +27,7 @@ class Post
   def summary
     attributes.fetch("summary")
   end
+  alias_method :description, :summary
 
   def publish
     attributes.fetch("publish")
@@ -42,8 +45,14 @@ class Post
     attributes["wp"]
   end
 
+  def canonical_url
+    URL.join(path).to_s
+  end
+
   def html
-    Tilt.new("views/post.slim").render(self)
+    Tilt.new("views/layout.slim").render(self) {
+      Tilt.new("views/post.slim").render(self)
+    }
   end
 
   def disqus_id
@@ -131,7 +140,9 @@ class Index
   end
 
   def html
-    Tilt.new("views/index.slim").render(self)
+    Tilt.new("views/layout.slim").render(self) {
+      Tilt.new("views/index.slim").render(self)
+    }
   end
 
   def feed
@@ -147,21 +158,47 @@ class Index
     ).render
   end
 
+  def description
+    "iain's blog"
+  end
+
+  def title
+    nil
+  end
+
+  def canonical_url
+    URL.join("/").to_s
+  end
+
 end
 
 class NotFound
 
   def html
-    Tilt.new("views/not_found.slim").render(self)
+    Tilt.new("views/layout.slim").render(self) {
+      Tilt.new("views/not_found.slim").render(self)
+    }
   end
 
   def css
     @css ||= Sass::Engine.new(
-      File.read("views/index.sass"),
+      File.read("views/post.sass"),
       syntax: :sass,
       style: :compressed,
       load_paths: ["views"],
     ).render
+  end
+
+  def description
+    "iain's blog"
+  end
+
+  def title
+    "404"
+  end
+
+  def canonical_url
+    URL.join("/").to_s
   end
 
 end

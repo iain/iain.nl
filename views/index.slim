@@ -1,42 +1,24 @@
-doctype html
-html
-  head
-    meta charset="UTF-8"
-    meta name="description" content="iain's blog"
-    meta name="viewport" content="width=device-width, initial-scale=1.0"
-    title iain.nl
-    link rel="canonical" href="http://www.iain.nl/"
-    link rel="alternate" type="application/rss+xml" href="/feed" title="iain.nl RSS Feed"
-    style type="text/css" == css
-  body
-    .title-bar
-      .wrapper
-        .main
-          h1.title
-            a href="/" # iain.nl
-    .wrapper
-      .main
+.intro
 
-        .intro
+  p
+    ' Hi, my name is Iain Hecker. I am a sr. software engineer at
+    a href="https://teachable.com" Teachable
+    ' , former VP of Engineering at
+    a> href="https://yourkarma.com" Karma
+    ' and I sometimes write things about programming here.
+    ' You can also find me on
+    a href="https://github.com/iain" GitHub
+    ' ,
+    a href="https://stackoverflow.com/users/525636/iain" Stack Overflow
+    ' , and
+    a href="https://twitter.com/iain_nl" Twitter
+    ' .
 
-          p
-            ' Hi, my name is Iain Hecker. I am a sr. software engineer at
-            a href="https://teachable.com" Teachable
-            ' , former VP of Engineering at
-            a> href="https://yourkarma.com" Karma
-            ' and I sometimes write things about programming here.
-            ' You can also find me on
-            a> href="https://github.com/iain" Github
-            ' and on
-            a href="https://twitter.com/iain_nl" Twitter
-            ' .
-
-        .articles
-          - posts.each do |post|
-            .post-title
-              h2
-                a href=post.path = post.title
-              a.published_on href=post.path rel="nofollow" = post.publish_formatted
-            p.summary = post.summary
-            p.read-more
-              a rel="nofollow" href=post.path → Read More
+.articles
+  - posts.group_by { |post| post.publish.year }.each do |year, posts|
+    p.year = year
+    ul
+      - posts.each do |post|
+        li
+          small = post.publish.strftime("%e %b.")
+          a href=post.path = post.title

@@ -3,7 +3,7 @@ require "aws-sdk"
 require "dotenv"
 Dotenv.load
 
-BUCKET_NAME = "www.iain.nl"
+BUCKET_NAME = "iain.nl"
 
 client = Aws::S3::Client.new
 
@@ -34,7 +34,7 @@ Dir["out/*"].each do |filename|
       bucket:            BUCKET_NAME,
       content_type:      content_type[key],
       content_encoding:  "gzip",
-      cache_control:     "max-age=86400",
+      cache_control:     "max-age=3600",
     )
   end
 
