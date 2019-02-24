@@ -1,4 +1,6 @@
-require "aws-sdk"
+# frozen_string_literal: true
+
+require "aws-sdk-s3"
 
 require "dotenv"
 Dotenv.load
@@ -7,7 +9,7 @@ BUCKET_NAME = "iain.nl"
 
 client = Aws::S3::Client.new
 
-content_type = ->(key) {
+content_type = -> (key) {
   case key
   when /\.html$/  then "text/html"
   when /\.jpe?g$/ then "image/jpeg"

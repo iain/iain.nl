@@ -1,5 +1,5 @@
 doctype html
-html
+html lang="en"
   head
     meta charset="UTF-8"
     title = [ title, "iain.nl" ].compact.join(" - ")
@@ -12,6 +12,8 @@ html
     .title-bar
       .container
         h1.title
-          a href="/" # iain.nl
+          a href="/"
+            ' # iain.nl
+            span.blink &nbsp;
     .container
       == yield

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "bundler/setup"
 Bundler.require(:default)
 
@@ -5,7 +7,7 @@ require "yaml"
 require "fileutils"
 
 require "pathname"
-URL = Pathname("http://iain.nl")
+URL = Pathname("https://iain.nl")
 
 class Post
 
@@ -101,7 +103,7 @@ class Renderer < Redcarpet::Render::HTML
     # XXX HACK: Redcarpet strips hard tabs out of code blocks,
     # so we assume you're not using leading spaces that aren't tabs,
     # and just replace them here.
-    if lexer.tag == 'make'
+    if lexer.tag == "make"
       code.gsub!(/^    /, "\t")
     end
 
@@ -114,7 +116,8 @@ class Renderer < Redcarpet::Render::HTML
   end
 
   protected
-  def rouge_formatter(opts={})
+
+  def rouge_formatter(opts = {})
     Rouge::Formatters::HTML.new(opts)
   end
 
@@ -123,7 +126,7 @@ end
 FileUtils.rm_r("out")
 FileUtils.mkdir_p("out")
 
-posts = YAML.load_file("articles/_index.yml").map { |k,v| Post.new(k, v) }
+posts = YAML.load_file("articles/_index.yml").map { |k, v| Post.new(k, v) }
 
 posts.each do |post|
   File.open("out/#{post.path}", "w:utf-8") do |f|
@@ -167,7 +170,7 @@ class Index
   end
 
   def canonical_url
-    URL.join("/").to_s
+    URL.to_s
   end
 
 end
