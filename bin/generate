@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 # frozen_string_literal: true
 
 require "bundler/setup"
@@ -11,6 +12,15 @@ URL = Pathname("https://iain.nl")
 
 class Post
 
+  def self.css
+    @_css ||= SassC::Engine.new(
+      File.read("views/post.sass"),
+      syntax: :sass,
+      style: :compressed,
+      load_paths: ["views"],
+    ).render
+  end
+
   attr_reader :path, :attributes
 
   def initialize(path, attributes)
@@ -19,7 +29,7 @@ class Post
   end
 
   def body
-    @body ||= markdown.render(source)
+    @_body ||= markdown.render(source)
   end
 
   def title
@@ -68,7 +78,7 @@ class Post
   private
 
   def markdown
-    @markdown ||= Redcarpet::Markdown.new(
+    @_markdown ||= Redcarpet::Markdown.new(
       Renderer.new,
       no_intra_emphasis: true,
       fenced_code_blocks: true,
@@ -77,20 +87,11 @@ class Post
   end
 
   def source
-    @source ||= File.open("articles/#{path}.md", "r:utf-8").read
+    @_source ||= File.open("articles/#{path}.md", "r:utf-8").read
   end
 
   def css
     self.class.css
-  end
-
-  def self.css
-    @css ||= Sass::Engine.new(
-      File.read("views/post.sass"),
-      syntax: :sass,
-      style: :compressed,
-      load_paths: ["views"],
-    ).render
   end
 
 end
@@ -153,7 +154,7 @@ class Index
   end
 
   def css
-    @css ||= Sass::Engine.new(
+    @_css ||= SassC::Engine.new(
       File.read("views/index.sass"),
       syntax: :sass,
       style: :compressed,
@@ -184,7 +185,7 @@ class NotFound
   end
 
   def css
-    @css ||= Sass::Engine.new(
+    @_css ||= SassC::Engine.new(
       File.read("views/post.sass"),
       syntax: :sass,
       style: :compressed,
@@ -206,6 +207,8 @@ class NotFound
 
 end
 
+time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+
 index = Index.new(posts)
 
 File.open("out/index.html", "w:utf-8") do |f|
@@ -223,3 +226,5 @@ end
 Dir["public/*"].each do |file|
   FileUtils.cp(file, "out/#{File.basename(file)}")
 end
+
+puts "Generated in %.03f seconds" % (Process.clock_gettime(Process::CLOCK_MONOTONIC) - time).round(3)

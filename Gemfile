@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 
-gem "tilt"
-gem "slim"
-gem "sass"
-gem "redcarpet"
-gem "guard"
-gem "guard-shell"
-gem "rouge"
 gem "aws-sdk-s3"
 gem "builder"
 gem "dotenv"
+gem "pry"
+gem "redcarpet"
+gem "rouge"
+gem "sassc"
+gem "slim"
+gem "tilt"

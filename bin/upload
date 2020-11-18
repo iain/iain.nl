@@ -1,13 +1,11 @@
+#!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require "aws-sdk-s3"
-
 require "dotenv"
-Dotenv.load
+Dotenv.load(".env")
 
-BUCKET_NAME = "iain.nl"
-
-client = Aws::S3::Client.new
+BUCKET_NAME = ENV.fetch("BUCKET_NAME")
+puts "Uploading to #{BUCKET_NAME}"
 
 content_type = -> (key) {
   case key
@@ -25,11 +23,14 @@ Dir["out/*"].each do |filename|
   system("gzip -9 #{filename}")
 end
 
+require "aws-sdk-s3"
+s3 = Aws::S3::Client.new
+
 Dir["out/*"].each do |filename|
   key = File.basename(filename).sub(/\.gz$/, "")
 
   File.open(filename, "rb") do |file|
-    client.put_object(
+    s3.put_object(
       acl:               "public-read",
       key:               key,
       body:              file,
@@ -43,10 +44,10 @@ Dir["out/*"].each do |filename|
   puts "Uploaded #{key}"
 end
 
-client.list_objects_v2(bucket: BUCKET_NAME).contents.each do |object|
+s3.list_objects_v2(bucket: BUCKET_NAME).contents.each do |object|
   unless File.exist?("out/#{object.key}.gz")
     puts "Deleting #{object.key}"
-    client.delete_object(
+    s3.delete_object(
       bucket: BUCKET_NAME,
       key: object.key,
     )
