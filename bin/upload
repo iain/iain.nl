@@ -37,7 +37,7 @@ Dir["out/*"].each do |filename|
       bucket:            BUCKET_NAME,
       content_type:      content_type[key],
       content_encoding:  "gzip",
-      cache_control:     "max-age=3600",
+      cache_control:     "max-age=3600,public",
     )
   end
 
