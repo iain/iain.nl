@@ -1,7 +1,7 @@
 $text-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
 $code-font: "Menlo", "Hack", "DejaVu Sans Mono", "Droid Sans Mono", "Monaco", "Courier New", monospace
 
-$accent:  #82d0f7
+$accent:  lighten(#82d0f7, 10%)
 $code-bg: #171717
 $code-fg: #b1b0b1
 $main-bg: #5c5c5f
@@ -26,11 +26,13 @@ h1, h2, h3
 a
   color: $accent
   text-decoration: none
+  border-bottom: 1px dotted $accent
   &:visited
     color: darken($accent, 10%)
+    border-bottom: 1px dotted darken($accent, 10%)
   &:hover
     color: lighten($accent, 10%)
-    text-decoration: underline
+    border-bottom: 1px dotted lighten($accent, 10%)
 .container
   max-width: 800px
   margin: 0 auto
@@ -47,6 +49,7 @@ a
     text-decoration: none
     font-weight: 100
     line-height: 72px
+    border-bottom: 0 none
     &:visited
       color: $code-fg
 
