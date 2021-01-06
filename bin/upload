@@ -13,12 +13,22 @@ content_type = -> (key) {
   when /\.jpe?g$/ then "image/jpeg"
   when /\.png$/   then "image/png"
   when /\.ico$/   then "image/ico"
+  when /\.woff2$/ then "font/woff2"
+  when /\.woff$/  then "font/woff"
   when "feed"     then "application/rss+xml"
   else "text/html"
   end
 }
 
-Dir["out/*"].each do |filename|
+max_age = -> (key) {
+  case key
+  when /\.woff2?$/ then 31536000
+  else 3600
+  end
+}
+
+Dir["out/**/*"].each do |filename|
+  next if File.directory?(filename)
   next if filename.end_with?(".gz")
   system("gzip -9 #{filename}")
 end
@@ -26,8 +36,9 @@ end
 require "aws-sdk-s3"
 s3 = Aws::S3::Client.new
 
-Dir["out/*"].each do |filename|
-  key = File.basename(filename).sub(/\.gz$/, "")
+Dir["out/**/*"].each do |filename|
+  next if File.directory?(filename)
+  key = filename.sub(/\Aout\//, "").sub(/\.gz$/, "")
 
   File.open(filename, "rb") do |file|
     s3.put_object(
@@ -37,7 +48,7 @@ Dir["out/*"].each do |filename|
       bucket:            BUCKET_NAME,
       content_type:      content_type[key],
       content_encoding:  "gzip",
-      cache_control:     "max-age=3600,public",
+      cache_control:     "max-age=#{max_age[key]},public",
     )
   end
 
@@ -53,5 +64,20 @@ s3.list_objects_v2(bucket: BUCKET_NAME).contents.each do |object|
     )
   end
 end
+
+puts "Invalidating cache"
+
+require "aws-sdk-cloudfront"
+cloudfront = Aws::CloudFront::Client.new
+resp = cloudfront.create_invalidation({
+  distribution_id: ENV.fetch("DISTRIBUTION_ID"),
+  invalidation_batch: {
+    paths: {
+      quantity: 1,
+      items: ["/*"],
+    },
+    caller_reference: Time.now.to_i.to_s,
+  },
+})
 
 puts "Done"

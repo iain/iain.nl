@@ -3,3 +3,4 @@
 .rubocop.yml
 .sass-cache/
 out/
+tmp/

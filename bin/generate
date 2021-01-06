@@ -224,7 +224,7 @@ File.open("out/404.html", "w:utf-8") do |f|
 end
 
 Dir["public/*"].each do |file|
-  FileUtils.cp(file, "out/#{File.basename(file)}")
+  FileUtils.cp_r(file, "out/#{File.basename(file)}")
 end
 
 puts "Generated in %.03f seconds" % (Process.clock_gettime(Process::CLOCK_MONOTONIC) - time).round(3)
