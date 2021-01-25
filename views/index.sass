@@ -2,16 +2,23 @@
 
 .articles
   margin-top: 56px
-  ul
-    list-style-type: none
-    margin: 0
-    padding: 0
+  .article
+    width: 100%
+    display: block
+    box-sizing: border-box
+    border-bottom: 0 none
+    &:hover .article-title
+      border-bottom: 1px dotted lighten($accent, 10%)
   p.year
     margin-top: 42px
     margin-bottom: 9px
+    color: lighten($main-fg, 10%)
   small
-    font-size: 14px
-    padding-right: 20px
-    white-space: nowrap
-    width: 60px
+    box-sizing: border-box
     display: inline-block
+    font-size: 14px
+    white-space: nowrap
+    color: $main-fg
+    width: 5rem
+  .article-title
+    border-bottom: 1px dotted $accent

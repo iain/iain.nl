@@ -20,8 +20,9 @@
 .articles
   - posts.group_by { |post| post.publish.year }.each do |year, posts|
     p.year = year
-    ul
+
+    .articles-per-year
       - posts.each do |post|
-        li
+        a.article href=post.path
           small = post.publish.strftime("%e %b.")
-          a href=post.path = post.title
+          span.article-title = post.title
