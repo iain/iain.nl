@@ -2,20 +2,20 @@ GEM
   remote: https://rubygems.org/
   specs:
     aws-eventstream (1.1.0)
-    aws-partitions (1.414.0)
-    aws-sdk-cloudfront (1.47.0)
-      aws-sdk-core (~> 3, >= 3.109.0)
+    aws-partitions (1.424.0)
+    aws-sdk-cloudfront (1.48.0)
+      aws-sdk-core (~> 3, >= 3.112.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-core (3.110.0)
+    aws-sdk-core (3.112.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
       jmespath (~> 1.0)
-    aws-sdk-kms (1.40.0)
-      aws-sdk-core (~> 3, >= 3.109.0)
+    aws-sdk-kms (1.42.0)
+      aws-sdk-core (~> 3, >= 3.112.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.87.0)
-      aws-sdk-core (~> 3, >= 3.109.0)
+    aws-sdk-s3 (1.88.0)
+      aws-sdk-core (~> 3, >= 3.112.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.2.2)
@@ -26,9 +26,12 @@ GEM
     ffi (1.14.2)
     jmespath (1.4.0)
     method_source (1.0.0)
+    nokogiri (1.11.1-x86_64-darwin)
+      racc (~> 1.4)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
+    racc (1.5.2)
     redcarpet (3.5.1)
     rouge (3.26.0)
     sassc (2.4.0)
@@ -47,6 +50,7 @@ DEPENDENCIES
   aws-sdk-s3
   builder
   dotenv
+  nokogiri
   pry
   redcarpet
   rouge
@@ -55,4 +59,4 @@ DEPENDENCIES
   tilt
 
 BUNDLED WITH
-   2.2.3
+   2.2.8
