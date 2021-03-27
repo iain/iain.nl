@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "sassc"
+
+filename = ARGV[0]
+p filename
+
+puts SassC::Engine.new(
+  File.read(filename),
+  syntax: :sass,
+  style: :expanded,
+  load_paths: ["views"],
+).render

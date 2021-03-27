@@ -4,7 +4,7 @@ article
   header
     margin-bottom: 10px
 .published
-  color: darken($main-fg, 20%)
+  color: var(--published)
   margin-bottom: 54px
   font-size: 16px
   text-align: right
@@ -16,46 +16,46 @@ h2, h3
 pre
   border-radius: 1rem
   overflow-x: auto
-  background: $code-bg
+  background: var(--pre-bg)
   font-size: 16px
-  color: white
+  color: var(--pre-fg)
   padding: 1.5rem 1.5rem
   margin: 0 -1.5rem
   line-height: 1.6rem
   code
     background: transparent
   .c1
-    color: #888888
+    color: var(--code-comment)
   // string
   .s, .s1, .s2, .sx
-    color: #99ad6a
+    color: var(--code-string)
   // symbol
   .ss
-    color: #7697d6
+    color: var(--code-symbol)
   // keywords?
   .nb
-    color: #6699cc
+    color: var(--code-keyword)
   // keywords
   .k, .nb, .kp
-    color: #8fbfdc
+    color: var(--code-keyword2)
   // numbers
   .mi
-    color: #cf6a4c
+    color: var(--code-number)
   // instance vars
   .vi
-    color: #c6b6ee
+    color: var(--code-ivar)
   // constant
   .nc, .no, .nn, .nl
-    color: #ffb964
+    color: var(--code-constant)
   // css prop
   .nl
-    color: #fad07a
+    color: var(--code-css-prop)
   // def function
   .k + .nf
-    color: #ffb964
+    color: var(--code-def-func)
   // yaml key / tags
   .na, .nt
-    color: #c6b6ee
+    color: var(--code-yaml-key)
   // regex
   .sr, .se
-    color: #dd0093
+    color: var(--code-regex)

@@ -8,17 +8,17 @@
     box-sizing: border-box
     border-bottom: 0 none
     &:hover .article-title
-      border-bottom: 1px dotted lighten($accent, 10%)
+      border-bottom: 1px dotted var(--link)
   p.year
     margin-top: 42px
     margin-bottom: 9px
-    color: lighten($main-fg, 10%)
+    color: var(--year)
   small
     box-sizing: border-box
     display: inline-block
     font-size: 14px
     white-space: nowrap
-    color: $main-fg
     width: 5rem
+    color: var(--date)
   .article-title
-    border-bottom: 1px dotted $accent
+    border-bottom: 1px dotted var(--link)
