@@ -2,14 +2,14 @@
 
 source "https://rubygems.org"
 
-gem "aws-sdk-s3"
 gem "aws-sdk-cloudfront"
+gem "aws-sdk-s3"
 gem "builder"
 gem "dotenv"
+gem "nokogiri"
 gem "pry"
 gem "redcarpet"
 gem "rouge"
 gem "sassc"
 gem "slim"
 gem "tilt"
-gem "nokogiri"

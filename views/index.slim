@@ -25,4 +25,5 @@
       - posts.each do |post|
         a.article href=post.path
           small = post.publish.strftime("%e %b.")
-          span.article-title = post.title
+          span.article-title
+            span = post.title

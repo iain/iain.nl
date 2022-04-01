@@ -3,22 +3,20 @@
 .articles
   margin-top: 56px
   .article
-    width: 100%
-    display: block
-    box-sizing: border-box
+    display: flex
     border-bottom: 0 none
-    &:hover .article-title
+    &:hover .article-title span
       border-bottom: 1px dotted var(--link)
   p.year
     margin-top: 42px
     margin-bottom: 9px
     color: var(--year)
   small
-    box-sizing: border-box
-    display: inline-block
     font-size: 14px
     white-space: nowrap
-    width: 5rem
     color: var(--date)
+    flex: 0 0 5rem
   .article-title
-    border-bottom: 1px dotted var(--link)
+    flex: 1 1 auto
+    span
+      border-bottom: 1px dotted var(--link)
