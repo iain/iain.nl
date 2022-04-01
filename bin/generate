@@ -10,6 +10,8 @@ require "fileutils"
 require "pathname"
 URL = Pathname("https://iain.nl")
 
+FileUtils.mkdir_p("out")
+
 class Post
 
   def self.css
@@ -127,7 +129,7 @@ end
 FileUtils.rm_r("out")
 FileUtils.mkdir_p("out")
 
-posts = YAML.load_file("articles/_index.yml").map { |k, v| Post.new(k, v) }
+posts = YAML.load_file("articles/_index.yml", permitted_classes: [Date]).map { |k, v| Post.new(k, v) }
 
 posts.each do |post|
   File.open("out/#{post.path}", "w:utf-8") do |f|
