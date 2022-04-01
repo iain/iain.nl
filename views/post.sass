@@ -1,27 +1,23 @@
 @import "shared"
 
-article
-  header
-    margin-bottom: 10px
 .published
   color: var(--published)
-  margin-bottom: 54px
   font-size: 16px
   text-align: right
 .post-body
   p
     text-align: justify
-h2, h3
-  margin-top: 42px
 pre
   border-radius: 1rem
   overflow-x: auto
   background: var(--pre-bg)
   font-size: 16px
   color: var(--pre-fg)
-  padding: 1.5rem 1.5rem
-  margin: 0 -1.5rem
   line-height: 1.6rem
+  margin: 0 -2rem
+  padding: 1.5rem 2rem
+  @media screen and (max-width: 800px)
+    border-radius: 0
   code
     background: transparent
   .c1

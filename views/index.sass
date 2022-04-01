@@ -1,15 +1,13 @@
 @import "shared"
 
 .articles
-  margin-top: 56px
   .article
     display: flex
     border-bottom: 0 none
-    &:hover .article-title span
-      border-bottom: 1px dotted var(--link)
+    &:hover, &:active
+      .article-title span
+        border-bottom: 1px dotted var(--link)
   p.year
-    margin-top: 42px
-    margin-bottom: 9px
     color: var(--year)
   small
     font-size: 14px

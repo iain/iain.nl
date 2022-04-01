@@ -28,15 +28,19 @@ a
     color: var(--link-hover)
     border-bottom: 1px dotted var(--link-hover)
 .container
+  box-sizing: border-box
   max-width: 800px
   margin: 0 auto
-  padding: 20px
+  @media screen and (max-width: 800px)
+    width: 100%
+    padding: 0 2rem
 .title-bar
   background: var(--code-bg)
   border-bottom: 1px solid var(--title-border)
 .title
-  font-size: 45px
   margin: 0
+  padding: 0
+  font-size: 45px
   white-space: nowrap
   a
     font-family: var(--code-font)
@@ -53,11 +57,9 @@ pre, code
 code
   background: var(--tt-bg)
   font-size: 16px
-  padding: 1px 3px
-  margin: 0 2px
   white-space: nowrap
   color: var(--tt-fg)
-  border-radius: 5px
+  border-radius: 1rem
 
 @keyframes blink
   0%
