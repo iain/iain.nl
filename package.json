@@ -8,6 +8,6 @@
     "tailwindcss": "^3.0.23"
   },
   "scripts": {
-    "build:css": "postcss -o ./public/application.css ./src/application.css"
+    "build:css": "postcss -o ./out/application.css ./src/application.css"
   }
 }

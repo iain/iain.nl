@@ -17,10 +17,11 @@ p.text-stone-800.dark:text-stone-300.my-10
 
 .mb-16
   - posts.group_by { |post| post.publish.year }.each do |year, posts|
-    h3.text-stone-800.dark:text-stone-300 = year
+    h2.text-stone-800.dark:text-stone-300 = year
 
-    .ml-4
+    ul.ml-4
       - posts.each do |post|
-        a.flex.no-underline href=post.path
-          small.w-20.basis-20.text-stone-800.dark:text-stone-300 = post.publish.strftime("%e %b.")
-          span.flex-initial.article-title.underline.decoration-dotted = post.title
+        li
+          a.flex.no-underline href=post.path
+            small.w-20.basis-20.text-stone-800.dark:text-stone-300 = post.publish.strftime("%e %b.")
+            span.flex-initial.article-title.underline.decoration-dotted = post.title

@@ -14,16 +14,6 @@ FileUtils.mkdir_p("out")
 
 class Post
 
-  def self.css
-    ""
-    # @_css ||= SassC::Engine.new(
-    #   File.read("views/post.sass"),
-    #   syntax: :sass,
-    #   style: :compressed,
-    #   load_paths: ["views"],
-    # ).render
-  end
-
   attr_reader :path, :attributes
 
   def initialize(path, attributes)
@@ -93,10 +83,6 @@ class Post
     @_source ||= File.open("articles/#{path}.md", "r:utf-8").read
   end
 
-  def css
-    self.class.css
-  end
-
 end
 
 class Renderer < Redcarpet::Render::HTML
@@ -156,16 +142,6 @@ class Index
     Tilt.new("views/feed.builder").render(self)
   end
 
-  def css
-    ""
-    # @_css ||= SassC::Engine.new(
-    #   File.read("views/index.sass"),
-    #   syntax: :sass,
-    #   style: :compressed,
-    #   load_paths: ["views"],
-    # ).render
-  end
-
   def description
     "iain's blog"
   end
@@ -186,16 +162,6 @@ class NotFound
     Tilt.new("views/layout.slim").render(self) {
       Tilt.new("views/not_found.slim").render(self)
     }
-  end
-
-  def css
-    ""
-    # @_css ||= SassC::Engine.new(
-    #   File.read("views/post.sass"),
-    #   syntax: :sass,
-    #   style: :compressed,
-    #   load_paths: ["views"],
-    # ).render
   end
 
   def description
