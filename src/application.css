@@ -1,0 +1,38 @@
+@import "./_gruvbox-light.css";
+@import "./_gruvbox-dark.css";
+@import "./_fira.css";
+@import "./_inter.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes blink {
+  0%  { opacity: 0; }
+  49% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.blink {
+  animation: blink 1.5s infinite;
+}
+
+a {
+  @apply text-sky-700 dark:text-sky-300 hover:text-sky-500 underline decoration-dotted;
+}
+
+p {
+  @apply m-4;
+}
+
+h2, h3 {
+  @apply ml-4 mb-4 mt-8 text-lg font-semibold;
+}
+
+pre {
+  @apply bg-stone-50 dark:bg-stone-900 md:rounded-lg p-4 overflow-scroll drop-shadow font-light;
+}
+
+code {
+  @apply lg:whitespace-nowrap drop-shadow rounded bg-stone-50 dark:bg-stone-900 p-1;
+}

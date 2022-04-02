@@ -1,29 +1,26 @@
-.intro
+p.text-stone-800.dark:text-stone-300.my-10
+  ' Hi, my name is
+  code Iain Hecker
+  ' . I am a senior software engineer at
+  a href="https://teachable.com" Teachable
+  ' , formerly VP of Engineering at
+  a> href="https://yourkarma.com" Karma
+  ' and I sometimes write things about programming here.
+  br
+  ' You can also find me on
+  a href="https://github.com/iain" GitHub
+  ' ,
+  a href="https://stackoverflow.com/users/525636/iain" Stack Overflow
+  ' , and
+  a href="https://twitter.com/iain_nl" Twitter
+  ' .
 
-  p
-    ' Hi, my name is
-    code Iain Hecker
-    ' . I am a senior software engineer at
-    a href="https://teachable.com" Teachable
-    ' , former VP of Engineering at
-    a> href="https://yourkarma.com" Karma
-    ' and I sometimes write things about programming here.
-    br
-    ' You can also find me on
-    a href="https://github.com/iain" GitHub
-    ' ,
-    a href="https://stackoverflow.com/users/525636/iain" Stack Overflow
-    ' , and
-    a href="https://twitter.com/iain_nl" Twitter
-    ' .
-
-.articles
+.mb-16
   - posts.group_by { |post| post.publish.year }.each do |year, posts|
-    p.year = year
+    h3.text-stone-800.dark:text-stone-300 = year
 
-    .articles-per-year
+    .ml-4
       - posts.each do |post|
-        a.article href=post.path
-          small = post.publish.strftime("%e %b.")
-          span.article-title
-            span = post.title
+        a.flex.no-underline href=post.path
+          small.w-20.basis-20.text-stone-800.dark:text-stone-300 = post.publish.strftime("%e %b.")
+          span.flex-initial.article-title.underline.decoration-dotted = post.title

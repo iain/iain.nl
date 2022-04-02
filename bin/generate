@@ -15,12 +15,13 @@ FileUtils.mkdir_p("out")
 class Post
 
   def self.css
-    @_css ||= SassC::Engine.new(
-      File.read("views/post.sass"),
-      syntax: :sass,
-      style: :compressed,
-      load_paths: ["views"],
-    ).render
+    ""
+    # @_css ||= SassC::Engine.new(
+    #   File.read("views/post.sass"),
+    #   syntax: :sass,
+    #   style: :compressed,
+    #   load_paths: ["views"],
+    # ).render
   end
 
   attr_reader :path, :attributes
@@ -115,7 +116,7 @@ class Renderer < Redcarpet::Render::HTML
     )
 
     compiled = formatter.format(lexer.lex(code))
-    "<pre>#{compiled}</pre>"
+    %{<pre class="">#{compiled}</pre>}
   end
 
   protected
@@ -156,12 +157,13 @@ class Index
   end
 
   def css
-    @_css ||= SassC::Engine.new(
-      File.read("views/index.sass"),
-      syntax: :sass,
-      style: :compressed,
-      load_paths: ["views"],
-    ).render
+    ""
+    # @_css ||= SassC::Engine.new(
+    #   File.read("views/index.sass"),
+    #   syntax: :sass,
+    #   style: :compressed,
+    #   load_paths: ["views"],
+    # ).render
   end
 
   def description
@@ -187,12 +189,13 @@ class NotFound
   end
 
   def css
-    @_css ||= SassC::Engine.new(
-      File.read("views/post.sass"),
-      syntax: :sass,
-      style: :compressed,
-      load_paths: ["views"],
-    ).render
+    ""
+    # @_css ||= SassC::Engine.new(
+    #   File.read("views/post.sass"),
+    #   syntax: :sass,
+    #   style: :compressed,
+    #   load_paths: ["views"],
+    # ).render
   end
 
   def description

@@ -10,6 +10,7 @@ puts "Uploading to #{BUCKET_NAME}"
 content_type = -> (key) {
   case key
   when /\.html$/  then "text/html"
+  when /\.css$/   then "text/css"
   when /\.jpe?g$/ then "image/jpeg"
   when /\.png$/   then "image/png"
   when /\.ico$/   then "image/ico"

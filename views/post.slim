@@ -1,9 +1,9 @@
-article
+article.mb-8
   header
-    h1 = title
-  p.published
+    h1.text-xl.font-semibold.text-stone-800.dark:text-stone-300.mx-4.mt-8 = title
+  .published.text-stone-700.dark:text-stone-400.text-right.text-sm.mx-4.mb-8
     ' Written on
     time datetime=publish_date = publish_formatted
 
-  section.post-body
+  section.post-body.text-stone-800.dark:text-stone-300
     == body
