@@ -20,38 +20,8 @@ pre
     border-radius: 0
   code
     background: transparent
-  .c1
-    color: var(--code-comment)
-  // string
-  .s, .s1, .s2, .sx
-    color: var(--code-string)
-  // symbol
-  .ss
-    color: var(--code-symbol)
-  // keywords?
-  .nb
-    color: var(--code-keyword)
-  // keywords
-  .k, .nb, .kp
-    color: var(--code-keyword2)
-  // numbers
-  .mi
-    color: var(--code-number)
-  // instance vars
-  .vi
-    color: var(--code-ivar)
-  // constant
-  .nc, .no, .nn, .nl
-    color: var(--code-constant)
-  // css prop
-  .nl
-    color: var(--code-css-prop)
-  // def function
-  .k + .nf
-    color: var(--code-def-func)
-  // yaml key / tags
-  .na, .nt
-    color: var(--code-yaml-key)
-  // regex
-  .sr, .se
-    color: var(--code-regex)
+
+@import "_gruvbox-light"
+
+@media screen and (prefers-color-scheme: dark)
+  @import "_gruvbox-dark"
