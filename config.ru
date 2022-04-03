@@ -1,36 +1,47 @@
 # frozen_string_literal: true
 
-# use Rack::Static, root: "public", urls: ["fonts/"]
-# use Rack::Static, root: "out", urls: [""], index: "index.html"
-
-require "pathname"
-require "pry"
+require_relative "config/application"
 
 class MyApp
 
   def initialize
-    @root = Pathname.new("out")
+    @out    = Pathname.new("out")
+    @public = Pathname.new("public")
+    @site   = Site.new
   end
 
   def call(env)
     request = Rack::Request.new(env)
-    path = request.path[1..]
-    path = "index.html" if path == ""
+    path = request.path[1..] # rubocop:disable Performance/ArraySemiInfiniteRangeSlice
 
-    if @root.join(path).exist?
-      body = @root.join(path).read
-      headers = {
-        "content-type" => content_type(path),
-      }
-      [ 200, headers, [ body ] ]
+    if path == ""
+      body = @site.index.html
+      respond(path: path, body: body)
+    elsif (post = @site.posts[path])
+      body = post.html
+      respond(path: path, body: body)
+    elsif @out.join(path).exist?
+      body = @out.join(path).read
+      respond(path: path, body: body)
+    elsif @public.join(path).exist?
+      body = @public.join(path).read
+      respond(path: path, body: body)
     else
-      [ 404, { "content-type" => "text/html" }, [ @root.join("404.html").read ] ]
+      body = @site.not_found.html
+      respond(path: nil, body: body, status: 404)
     end
+  end
+
+  private
+
+  def respond(path:, body:, status: 200)
+    headers = { "content-type" => content_type(path) }
+    [ status, headers, [ body ] ]
   end
 
   def content_type(file)
     case file
-    when /\.html$/  then "text/html"
+    # when /\.html$/  then "text/html"
     when /\.css$/   then "text/css"
     when /\.jpe?g$/ then "image/jpeg"
     when /\.png$/   then "image/png"
