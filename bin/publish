@@ -10,7 +10,7 @@ echo "Generating HTML..."
 ./bin/generate
 
 echo "Generating CSS..."
-yarn build:css
+NODE_ENV=production yarn build:css
 
 echo "Uploading..."
 ./bin/upload
