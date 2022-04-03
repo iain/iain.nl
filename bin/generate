@@ -13,25 +13,22 @@ FileUtils.mkdir_p("out")
 # reading
 site = Site.new
 
+write = -> (path, contents) {
+  puts "Writing #{path}"
+  File.open(File.join("out", path), "w:utf-8") do |f|
+    f << contents
+  end
+}
+
 # writing
 site.posts.each do |path, post|
-  File.open("out/#{path}", "w:utf-8") do |f|
-    f << post.html
-  end
+  write.call(path, post.html)
 end
+write.call("index.html", site.index.html)
+write.call("feed", site.index.feed)
+write.call("404.html", site.not_found.html)
 
-File.open("out/index.html", "w:utf-8") do |f|
-  f << site.index.html
-end
-
-File.open("out/feed", "w:utf-8") do |f|
-  f << site.index.feed
-end
-
-File.open("out/404.html", "w:utf-8") do |f|
-  f << site.not_found.html
-end
-
+puts "Copying public assets"
 Dir["public/*"].each do |file|
   FileUtils.cp_r(file, "out/#{File.basename(file)}")
 end

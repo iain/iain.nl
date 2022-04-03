@@ -35,7 +35,11 @@ class MyApp
   private
 
   def respond(path:, body:, status: 200)
-    headers = { "content-type" => content_type(path) }
+    headers = {
+      "Content-Type"   => content_type(path),
+      "Content-Length" => body.bytesize,
+      "Cache-Control"  => "no-cache, no-store, must-revalidate",
+    }
     [ status, headers, [ body ] ]
   end
 
@@ -55,4 +59,5 @@ class MyApp
 
 end
 
+use Rack::CommonLogger
 run MyApp.new
