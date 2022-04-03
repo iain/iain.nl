@@ -1,77 +1,33 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require "dotenv"
-Dotenv.load(".env")
+require_relative "../config/application"
 
-BUCKET_NAME = ENV.fetch("BUCKET_NAME")
+BUCKET_NAME     = ENV.fetch("BUCKET_NAME")
+DISTRIBUTION_ID = ENV.fetch("DISTRIBUTION_ID")
+
 puts "Uploading to #{BUCKET_NAME}"
-
-content_type = -> (key) {
-  case key
-  when /\.html$/  then "text/html"
-  when /\.css$/   then "text/css"
-  when /\.jpe?g$/ then "image/jpeg"
-  when /\.png$/   then "image/png"
-  when /\.ico$/   then "image/ico"
-  when /\.woff2$/ then "font/woff2"
-  when /\.woff$/  then "font/woff"
-  when "feed"     then "application/rss+xml"
-  else "text/html"
-  end
-}
-
-max_age = -> (key) {
-  case key
-  when /\.woff2?$/ then 31536000
-  else 3600
-  end
-}
 
 Dir["out/**/*"].each do |filename|
   next if File.directory?(filename)
   next if filename.end_with?(".gz")
-  system("gzip -9 #{filename}")
+  system("gzip", "-9", filename)
 end
 
-require "aws-sdk-s3"
 s3 = Aws::S3::Client.new
 
 Dir["out/**/*"].each do |filename|
   next if File.directory?(filename)
-  key = filename.sub(/\Aout\//, "").sub(/\.gz$/, "")
-
-  File.open(filename, "rb") do |file|
-    s3.put_object(
-      acl:               "public-read",
-      key:               key,
-      body:              file,
-      bucket:            BUCKET_NAME,
-      content_type:      content_type[key],
-      content_encoding:  "gzip",
-      cache_control:     "max-age=#{max_age[key]},public",
-    )
-  end
-
-  puts "Uploaded #{key}"
+  Files.upload(filename: filename, client: s3, bucket: BUCKET_NAME)
 end
 
-s3.list_objects_v2(bucket: BUCKET_NAME).contents.each do |object|
-  unless File.exist?("out/#{object.key}.gz")
-    puts "Deleting #{object.key}"
-    s3.delete_object(
-      bucket: BUCKET_NAME,
-      key: object.key,
-    )
-  end
-end
+Files.delete_stale(client: s3, bucket: BUCKET_NAME)
 
 puts "Invalidating cache"
 
-require "aws-sdk-cloudfront"
 cloudfront = Aws::CloudFront::Client.new
-resp = cloudfront.create_invalidation({
-  distribution_id: ENV.fetch("DISTRIBUTION_ID"),
+cloudfront.create_invalidation({
+  distribution_id: DISTRIBUTION_ID,
   invalidation_batch: {
     paths: {
       quantity: 1,

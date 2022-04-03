@@ -12,7 +12,7 @@ class MyApp
 
   def call(env)
     request = Rack::Request.new(env)
-    path = request.path[1..] # rubocop:disable Performance/ArraySemiInfiniteRangeSlice
+    path = request.path.delete_prefix("/")
 
     if path == ""
       body = @site.index.html
@@ -36,25 +36,11 @@ class MyApp
 
   def respond(path:, body:, status: 200)
     headers = {
-      "Content-Type"   => content_type(path),
+      "Content-Type"   => Files.content_type(path),
       "Content-Length" => body.bytesize,
       "Cache-Control"  => "no-cache, no-store, must-revalidate",
     }
     [ status, headers, [ body ] ]
-  end
-
-  def content_type(file)
-    case file
-    # when /\.html$/  then "text/html"
-    when /\.css$/   then "text/css"
-    when /\.jpe?g$/ then "image/jpeg"
-    when /\.png$/   then "image/png"
-    when /\.ico$/   then "image/ico"
-    when /\.woff2$/ then "font/woff2"
-    when /\.woff$/  then "font/woff"
-    when "feed"     then "application/rss+xml"
-    else "text/html"
-    end
   end
 
 end
