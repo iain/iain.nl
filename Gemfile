@@ -14,5 +14,6 @@ gem "slim"
 gem "tilt"
 
 group :development do
+  gem "foreman"
   gem "puma"
 end
