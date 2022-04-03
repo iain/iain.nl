@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+
 require_relative "../config/application"
 
 BUCKET_NAME     = ENV.fetch("BUCKET_NAME")
@@ -37,4 +39,4 @@ cloudfront.create_invalidation({
   },
 })
 
-puts "Done"
+puts "Uploaded in %.03f seconds" % (Process.clock_gettime(Process::CLOCK_MONOTONIC) - start_time).round(3)

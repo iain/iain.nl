@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -euo pipefail
+
+echo "Cleaning out directory..."
+rm -r out/
+mkdir out
+
+echo "Generating HTML..."
+./bin/generate
+
+echo "Generating CSS..."
+yarn build:css
+
+echo "Uploading..."
+./bin/upload
+
+echo "Done"

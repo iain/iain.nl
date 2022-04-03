@@ -5,9 +5,6 @@ start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 
 require_relative "../config/application"
 
-# clobber clobber
-FileUtils.mkdir_p("out")
-FileUtils.rm_r("out")
 FileUtils.mkdir_p("out")
 
 # reading
