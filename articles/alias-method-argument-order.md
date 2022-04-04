@@ -13,4 +13,4 @@ the name of the actual method.
 
 Need some more information about `alias` vs.
 `alias_method`? There is a great post on that on
-[bigbinary.com](http://blog.bigbinary.com/2012/01/08/alias-vs-alias-method.html).
+[bigbinary.com](https://www.bigbinary.com/blog/alias-vs-alias-method).

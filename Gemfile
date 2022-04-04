@@ -10,6 +10,10 @@ gem "nokogiri"
 gem "pry"
 gem "redcarpet"
 gem "rouge"
-gem "sassc"
 gem "slim"
 gem "tilt"
+
+group :development do
+  gem "foreman"
+  gem "puma"
+end

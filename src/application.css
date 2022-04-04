@@ -1,0 +1,18 @@
+@import "./_gruvbox-light.css";
+@import "./_gruvbox-dark.css";
+@import "./_fira.css";
+@import "./_inter.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes blink {
+  0%  { opacity: 0; }
+  49% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.blink {
+  animation: blink 1.5s infinite;
+}
