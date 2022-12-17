@@ -5,7 +5,7 @@ start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 
 require_relative "../config/application"
 
-BUCKET_NAME     = ENV.fetch("BUCKET_NAME")
+BUCKET_NAME = ENV.fetch("BUCKET_NAME")
 DISTRIBUTION_ID = ENV.fetch("DISTRIBUTION_ID")
 
 puts "Uploading to #{BUCKET_NAME}"
@@ -13,7 +13,7 @@ puts "Uploading to #{BUCKET_NAME}"
 Dir["out/**/*"].each do |filename|
   next if File.directory?(filename)
   next if filename.end_with?(".gz")
-  system("gzip", "-9", filename)
+  system("gzip", "--best", "--force", filename)
 end
 
 s3 = Aws::S3::Client.new
@@ -33,10 +33,10 @@ cloudfront.create_invalidation({
   invalidation_batch: {
     paths: {
       quantity: 1,
-      items: ["/*"],
+      items: ["/*"]
     },
-    caller_reference: Time.now.to_i.to_s,
-  },
+    caller_reference: Time.now.to_i.to_s
+  }
 })
 
 puts "Uploaded in %.03f seconds" % (Process.clock_gettime(Process::CLOCK_MONOTONIC) - start_time).round(3)
