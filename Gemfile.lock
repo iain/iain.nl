@@ -27,16 +27,18 @@ GEM
     jmespath (1.6.2)
     method_source (1.0.0)
     nio4r (2.5.8)
-    nokogiri (1.13.10-arm64-darwin)
+    nokogiri (1.14.3-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.13.10-x86_64-darwin)
+    nokogiri (1.14.3-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.14.3-x86_64-linux)
       racc (~> 1.4)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
     puma (6.0.0)
       nio4r (~> 2.0)
-    racc (1.6.1)
+    racc (1.6.2)
     redcarpet (3.5.1)
     rouge (4.0.1)
     slim (4.1.0)
@@ -49,6 +51,7 @@ PLATFORMS
   arm64-darwin-21
   arm64-darwin-22
   x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   aws-sdk-cloudfront
