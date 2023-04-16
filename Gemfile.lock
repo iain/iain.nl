@@ -2,19 +2,19 @@ GEM
   remote: https://rubygems.org/
   specs:
     aws-eventstream (1.2.0)
-    aws-partitions (1.679.0)
-    aws-sdk-cloudfront (1.72.0)
+    aws-partitions (1.748.0)
+    aws-sdk-cloudfront (1.76.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-core (3.168.4)
+    aws-sdk-core (3.171.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.651.0)
       aws-sigv4 (~> 1.5)
       jmespath (~> 1, >= 1.6.1)
-    aws-sdk-kms (1.61.0)
+    aws-sdk-kms (1.63.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.117.2)
+    aws-sdk-s3 (1.120.1)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.4)
@@ -26,24 +26,24 @@ GEM
     foreman (0.87.2)
     jmespath (1.6.2)
     method_source (1.0.0)
-    nio4r (2.5.8)
-    nokogiri (1.13.10-arm64-darwin)
+    nio4r (2.5.9)
+    nokogiri (1.14.3-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.13.10-x86_64-darwin)
+    nokogiri (1.14.3-x86_64-darwin)
       racc (~> 1.4)
-    pry (0.14.1)
+    pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    puma (6.0.0)
+    puma (6.2.1)
       nio4r (~> 2.0)
-    racc (1.6.1)
-    redcarpet (3.5.1)
-    rouge (4.0.1)
-    slim (4.1.0)
-      temple (>= 0.7.6, < 0.9)
-      tilt (>= 2.0.6, < 2.1)
-    temple (0.8.2)
-    tilt (2.0.11)
+    racc (1.6.2)
+    redcarpet (3.6.0)
+    rouge (4.1.0)
+    slim (5.1.0)
+      temple (~> 0.10.0)
+      tilt (>= 2.0.6, < 2.2)
+    temple (0.10.0)
+    tilt (2.1.0)
 
 PLATFORMS
   arm64-darwin-21
@@ -65,4 +65,4 @@ DEPENDENCIES
   tilt
 
 BUNDLED WITH
-   2.3.26
+   2.4.6
