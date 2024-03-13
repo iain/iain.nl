@@ -42,7 +42,7 @@ module Files
     client.list_objects_v2(bucket: bucket).contents.each do |object|
       unless File.exist?("out/#{object.key}.gz")
         puts "Deleting #{object.key}"
-        s3.delete_object(bucket: bucket, key: object.key)
+        client.delete_object(bucket: bucket, key: object.key)
       end
     end
   end
