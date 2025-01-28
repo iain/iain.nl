@@ -4,6 +4,7 @@ source "https://rubygems.org"
 
 gem "aws-sdk-cloudfront"
 gem "aws-sdk-s3"
+gem "base64"
 gem "builder"
 gem "dotenv"
 gem "logger"
