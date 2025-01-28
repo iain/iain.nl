@@ -1,2 +1,2 @@
 web: puma --port 3000
-css: yarn build:css --watch
+css: pnpm run build:css --watch

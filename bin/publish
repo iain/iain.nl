@@ -10,7 +10,7 @@ echo "Generating HTML..."
 ./bin/generate
 
 echo "Generating CSS..."
-NODE_ENV=production yarn build:css
+NODE_ENV=production pnpm run build:css
 
 echo "Uploading..."
 ./bin/upload
